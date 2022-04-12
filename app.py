@@ -17,7 +17,7 @@ def testfn():
     if request.method == 'POST':
         vi = request.get_json()['greeting']  # parse as JSON
         en = vi2en(vi)
-        message = f'greeding: {en}'
+        return jsonify(en)
         return 'Sucesss', 200
 
 

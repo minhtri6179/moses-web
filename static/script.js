@@ -1,11 +1,4 @@
-fetch("/test")
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (text) {
-    console.log("GET response:");
-    console.log(text.greeting);
-  });
+
 
 // function vi2en() {
 //   document.getElementById("viTextarea").value = "YOU CLICKED ME!";
@@ -43,27 +36,31 @@ button.onclick = function () {
     .then(function (text) {
       console.log("POST response: ");
       // Should be 'OK' if everything was successful
-      console.log(text);
+      //console.log(text.slice(9, -2));
+	const newtxt = text.slice(9, -4);
+	console.log(newtxt);
+      document.getElementById("enTextarea").value = newtxt;
     });
 
   // Receive text handle from server - receive english sentence
   // Get the reciever endpoint from Python using fetch:
 
-  //   fetch("/test")
-  //     .then(function (response) {
-  //       return response.json();
-  //     })
-  //     .then(function (text) {
-  //       console.log("GET response:");
-  //       console.log(text.greeting);
-  //     });
-  //   // send same requests
-  //   fetch("/test")
-  //     .then(function (response) {
-  //       return response.json(); // But parse it as JSON this time
-  //     })
-  //     .then(function (json) {
-  //       console.log("GET response as JSON:");
-  //       console.log(json); // Here’s our JSON object
-  //     });
+     fetch("/test")
+       .then(function (response) {
+         return response.json();
+       })
+       .then(function (text) {
+         console.log("GET response:");
+         console.log(text.greeting);
+       });
+     // send same requests
+     fetch("/test")
+       .then(function (response) {
+         return response.json(); // But parse it as JSON this time
+       })
+       .then(function (json) {
+         console.log("GET response as JSON:");
+         console.log(json); // Here’s our JSON object
+         
+       });
 };
