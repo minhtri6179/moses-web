@@ -34,15 +34,15 @@
   <body>
     <div class="container">
       <div class="row">
-        <h1 class="display-1">Dịch Việt - Anh</h1>
+        <h1 class="display-1">Dịch Anh - Việt</h1>
       </div>
       <div class="row">
         <div class="col-4">
           <textarea
-            id="viTextarea"
+            id="enTextarea"
             type="text"
             class="form-control"
-            placeholder="Tiếng Việt"
+            placeholder="Tiếng Anh"
             rows="7"
           ></textarea>
         </div>
@@ -51,7 +51,7 @@
             <button
               id="translate_btn"
               class="btn btn-primary"
-              onclick="vi2en()"
+              onclick="en2vi()"
             >
               <span>Dịch</span>
             </button>
@@ -64,12 +64,12 @@
         </div>
         <div class="col-4">
           <textarea
-            id="enTextarea"
+            id="viTextarea"
             type="text"
             class="form-control"
-            placeholder="Tiếng Anh"
-            rows="7"
+            placeholder="Tiếng Việt"
             readonly="readonly"
+            rows="7"
           ></textarea>
         </div>
       </div>

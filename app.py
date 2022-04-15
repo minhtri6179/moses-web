@@ -3,9 +3,12 @@ from translate import vi2en
 app = Flask(__name__)
  
                                                     
-@app.route("/")
+@app.route("/vi2en")
 def a():
     return render_template('main.html')
+@app.route("/en2vi")
+def b():
+    return render_template('en2vi.html')
 
 @app.route('/test', methods=['GET', 'POST'])
 def testfn():
