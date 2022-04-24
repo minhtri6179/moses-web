@@ -1,17 +1,3 @@
-change = document.getElementById("change_btn");
-change.onclick = function () {
-  cur_page = window.location.href;
-  cur_page = cur_page.split("/")[3];
-  if (cur_page == "en2vi") {
-    cur_page = "vi2en";
-  } else {
-    cur_page = "en2vi";
-  }
-  arr_href = window.location.href.split("/");
-  next_href =
-    arr_href[0] + "/" + arr_href[1] + "/" + arr_href[2] + "/" + cur_page;
-  window.location.href = next_href;
-};
 
 button = document.getElementById("translate_btn");
 button.onclick = function () {
