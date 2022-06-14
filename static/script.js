@@ -1,21 +1,33 @@
-
+change_btn = document.getElementById("change_btn");
+change_btn.onclick = function () {
+  let cur_url = window.location.href;
+  if (cur_url.includes("vi2en")) {
+    cur_url = cur_url.replace("vi2en", "en2vi");
+  } else {
+    cur_url = cur_url.replace("en2vi", "vi2en");
+  }
+  window.location.replace(cur_url);
+};
 button = document.getElementById("translate_btn");
 button.onclick = function () {
   // POST
   // POST message vi input from user to server
-  fetch("/test", {
-    // Declare what type of data we're sending
-    // Get vi text from user
+  if (window.location.href.includes("vi2en")) {
+    sentence_value = "vi:" + document.getElementById("viTextarea").value;
+    sentence_translated = "enTextarea";
+  } else {
+    sentence_value = "en:" + document.getElementById("enTextarea").value;
+    sentence_translated = "viTextarea";
+  }
+  fetch("/translate", {
     headers: {
       "Content-Type": "application/json",
     },
-
-    // Specify the method
     method: "POST",
-
     // A JSON payload
+
     body: JSON.stringify({
-      greeting: document.getElementById("viTextarea").value,
+      data: sentence_value,
     }),
   })
     .then(function (response) {
@@ -23,32 +35,10 @@ button.onclick = function () {
       return response.text();
     })
     .then(function (text) {
-      console.log("POST response: ");
+      // console.log("POST response: ");
       // Should be 'OK' if everything was successful
       //console.log(text.slice(9, -2));
-      const newtxt = text.slice(9, -4);
-      console.log(newtxt);
-      document.getElementById("enTextarea").value = newtxt;
-    });
-
-  // Receive text handle from server - receive english sentence
-  // Get the reciever endpoint from Python using fetch:
-
-  fetch("/test")
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (text) {
-      console.log("GET response:");
-      console.log(text.greeting);
-    });
-  // send same requests
-  fetch("/test")
-    .then(function (response) {
-      return response.json(); // But parse it as JSON this time
-    })
-    .then(function (json) {
-      console.log("GET response as JSON:");
-      console.log(json); // Here’s our JSON object
+      const result = JSON.parse(text)["data"];
+      document.getElementById(sentence_translated).value = result;
     });
 };
