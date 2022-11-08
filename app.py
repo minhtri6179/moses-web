@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-from translate import vi2en, en2vi
+from translate import v2e, e2v
 app = Flask(__name__)
 
 
@@ -20,18 +20,18 @@ def vi2en():
 
 @app.route('/translate', methods=['POST'])
 def translate_():
-    pass
     # POST request
     if request.method == 'POST':
         respone = request.get_json()['data'][3:]
         input_sentence = respone
+
         flag = request.get_json()['data'][:3]
         if 'en' in flag:
-            result = en2vi_model.tf_translate(input_sentence)
+            result = e2v(input_sentence)
         else:
-            result = vi2en_model.tf_translate(input_sentence)
-
+            result = v2e(input_sentence)
         final_sentences = {"data": result}
+        print(final_sentences)
         return jsonify(final_sentences)
 
 

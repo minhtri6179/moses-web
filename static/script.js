@@ -35,10 +35,11 @@ button.onclick = function () {
       return response.text();
     })
     .then(function (text) {
-      // console.log("POST response: ");
+      //console.log("POST response: ");
       // Should be 'OK' if everything was successful
-      //console.log(text.slice(9, -2));
-      const result = JSON.parse(text)["data"];
+      
+      const result = JSON.parse(text)["data"]["text"];
+      console.log(result);
       document.getElementById(sentence_translated).value = result;
     });
 };
